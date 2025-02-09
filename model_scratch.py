@@ -366,7 +366,7 @@ def L_model_backward(AL, Y, caches):
     grads = {}
     L = len(caches)
     m = AL.shape[1]
-    dAL = -(Y/(AL + 1e-8))
+    dAL = AL - Y
     current_cache = caches[L-1]
     grads["dA" + str(L-1)], grads["dW" + str(L)], grads["db" + str(L)] = linear_activation_backward(dAL, current_cache, activation = "softmax")
     for l in reversed(range(L-1)):
